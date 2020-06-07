@@ -24,11 +24,26 @@ var indexRoutes = require("./routes/index");
 	useUnifiedTopology: true,
 	useFindAndModify: false
 }); */
-mongoose.connect("mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority", {
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
+});
+client.connect(err => {
+	const collection = client.db("test").collection("devices");
+	// perform actions on the collection object
+	client.close();
+});
+
+/*mongoose.connect("mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
-});
+});*/
 
 app.use(
 	bodyParser.urlencoded({
