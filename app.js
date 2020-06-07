@@ -24,7 +24,7 @@ var indexRoutes = require("./routes/index");
 	useUnifiedTopology: true,
 	useFindAndModify: false
 }); */
-mongoose.connect("mongodb+srv://anishaan:Aniket%4099@cluster0-n6rdv.mongodb.net/yelp_camp?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
