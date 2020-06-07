@@ -23,7 +23,7 @@ var indexRoutes = require("./routes/index");
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
-}); */
+}); 
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority";
@@ -37,13 +37,18 @@ client.connect(err => {
 	const collection = client.db("test").collection("devices");
 	// perform actions on the collection object
 	client.close();
-});
+}); */
 
-/*mongoose.connect("mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://anishaan:seetulshaan@cluster0-n6rdv.mongodb.net/yelpcamp?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useFindAndModify: false
-});*/
+	useFindAndModify: false,
+	useCreateIndex: true
+}).then(() => {
+	console.log("CONNECTED TO DB");
+}).catch(err => {
+	console.log("error : ", err.message)
+});
 
 app.use(
 	bodyParser.urlencoded({
