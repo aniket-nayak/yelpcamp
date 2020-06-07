@@ -63,6 +63,6 @@ app.use("/campgrounds/:id/comments", commentsRoutes);
 
 
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
 	console.log("THE YELP CAMP PAGE HAS STARTED!!!");
 });
