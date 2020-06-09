@@ -49,7 +49,13 @@
 }
 
 .form .form-group {
-    margin: 0px 0px 8px;
+    margin: 5px 5px 5px 5px;
+}
+
+.form .form-group textarea {
+    width: 96%;
+    height: 20%;
+
 }
 
 .userPage {
