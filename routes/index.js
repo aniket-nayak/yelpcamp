@@ -2,7 +2,9 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var Campground = require("../models/campgrounds");
 var middleware = require("../middleware/index");
+
 
 //HOME PAGE
 router.get("/", function (req, res) {
@@ -22,7 +24,12 @@ router.get("/register", function (req, res) {
 // Register Logic
 router.post("/register", function (req, res) {
     var newUser = new User({
-        username: req.body.username
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        avatar: req.body.avatar,
+        about: req.body.about
     });
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
@@ -54,6 +61,30 @@ router.get("/logout", function (req, res) {
     req.logout();
     req.flash("success", "Logged You Out!!");
     res.redirect("/campgrounds");
+});
+
+//=======================
+// User Routes
+//=======================
+router.get("/users/:id", function (req, res) {
+    User.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            Campground.find().where("author.id").equals(foundUser._id).exec(function (err, campgrounds) {
+                if (err) {
+                    req.flash("error", err.message);
+                    res.redirect("back");
+                } else {
+                    res.render("users/show", {
+                        user: foundUser,
+                        campgrounds: campgrounds
+                    });
+                }
+            })
+        }
+    });
 });
 
 

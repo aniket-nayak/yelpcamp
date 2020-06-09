@@ -26,3 +26,36 @@
 #comment_para {
     margin-bottom: 5px;
 }
+
+.card .img-fluid {
+    height: 250px;
+}
+
+.jumbotron {
+    color: #404763;
+    font-family: 'Merriweather', serif;
+}
+
+.form {
+    width: 30%;
+    height: 30px auto;
+    margin-left: 33%;
+
+}
+
+.form h1 {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form .form-group {
+    margin: 0px 0px 8px;
+}
+
+.userPage {
+    margin: 20px;
+}
+
+#back_button {
+    color: white;
+}
