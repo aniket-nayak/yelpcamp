@@ -1,13 +1,14 @@
+require('dotenv').config();
 var express = require("express"),
 	app = express(),
 	bodyParser = require("body-parser"),
 	mongoose = require("mongoose"),
 	flash = require("connect-flash"),
 	passport = require("passport"),
+	cookieParser = require("cookie-parser"),
 	passportLocal = require("passport-local"),
 	expressSession = require("express-session"),
 	methodOverride = require("method-override"),
-	upload = require("express-fileupload"),
 	Campground = require("./models/campgrounds"),
 	Comment = require("./models/comments"),
 	User = require("./models/user"),
@@ -41,8 +42,8 @@ app.use(
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+app.use(cookieParser('secret'));
 app.use(flash());
-app.use(upload());
 //seedDb();
 
 //Passport Configuration

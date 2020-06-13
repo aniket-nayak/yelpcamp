@@ -6,8 +6,12 @@ var UserSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     avatar: String,
-    email: String,
-    avatar: String,
+    avatarId: String,
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     about: String
 });
 UserSchema.plugin(passportLocalMongoose);
