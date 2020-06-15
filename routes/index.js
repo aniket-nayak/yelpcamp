@@ -143,7 +143,7 @@ router.post("/forgot", function (req, res, next) {
             };
             smtpTransport.sendMail(mailOptions, function (err) {
                 console.log("mail sent");
-                req.flash("success", "An e-mail has been sent to " + user.email + "with further instructions.");
+                req.flash("success", "An e-mail has been sent to " + user.email + " with further instructions.");
                 done(err, "done");
             });
         }
@@ -161,6 +161,7 @@ router.get("/reset/:token", function (req, res) {
         }
     }, function (err, user) {
         if (!user) {
+            console.log(err);
             req.flash("error", "Password reset token is invalid or has expired.");
             return res.redirect("/forgot");
         }
@@ -180,6 +181,7 @@ router.post("/reset/:token", function (req, res) {
                 }
             }, function (err, user) {
                 if (!user) {
+                    console.log(err);
                     req.flash("error", "Password reset token is invalid or has expired.");
                     return res.redirect("back");
                 }
