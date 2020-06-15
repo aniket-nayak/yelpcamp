@@ -182,7 +182,7 @@ router.post("/reset/:token", function (req, res) {
             }, function (err, user) {
                 if (!user) {
                     console.log(err);
-                    req.flash("error", "Password reset token is invalid or has expired.");
+                    req.flash("error", err.message);
                     return res.redirect("back");
                 }
                 if (req.body.password === req.body.confirm) {
@@ -223,6 +223,7 @@ router.post("/reset/:token", function (req, res) {
             });
         }
     ], function (err) {
+        req.flash("success", "Success! Your password has been changed.");
         res.redirect("/campgrounds");
     });
 });
