@@ -182,7 +182,7 @@ router.post("/reset/:token", function (req, res) {
             }, function (err, user) {
                 if (!user) {
                     console.log(err);
-                    req.flash("error", err.message);
+                    req.flash("error", "Password reset token is invalid or has expired.");
                     return res.redirect("back");
                 }
                 if (req.body.password === req.body.confirm) {
